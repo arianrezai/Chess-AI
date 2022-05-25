@@ -1,7 +1,3 @@
-"""
-Chess TUI: This file contains a play option without GUI to allow autoplay in performace_evaluation.py
-
-"""
 import chess
 
 def play_chess(board, white, black):
