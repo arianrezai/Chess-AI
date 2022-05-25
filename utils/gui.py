@@ -1,9 +1,3 @@
-"""
-Chess GUI
-
-"""
-
-
 import sys
 import os
 import pygame
@@ -13,7 +7,7 @@ import chess
 # constants and configuration
 TILE_SIZE = 64
 BORDER = 10
-INFO_HEIGHT = 100  # informational window below board
+INFO_HEIGHT = 100 
 BOARD_POS = (BORDER, BORDER)
 COLOR_DARK = (181, 136, 99)
 COLOR_LIGHT = (240, 217, 181)
@@ -63,7 +57,7 @@ def create_board_from_fen(fen):
         elif f in ('1', '2', '3', '4', '5', '6', '7', '8'):
             row = row + int(f)
         elif f in ('K', 'k', 'Q', 'q', 'R', 'r', 'N', 'n', 'B', 'b', 'P', 'p'):
-            board[int(col)][row] = get_piece(f)  # why suddenly need to ensure col is int?
+            board[int(col)][row] = get_piece(f) 
             row = row + 1
     return board
 
@@ -242,15 +236,11 @@ def play_chess(chess_board, white="player", black="player"):
                             piece, old_x, old_y = selected_piece
                             new_x, new_y = drop_pos
                             if new_x is not None and new_y is not None:
-                                # horrible math to convert board array position to chess.Square
-                                # I have to reverses the columns since my array starts at A8 not A1
                                 move = chess.Move(((7 - old_y)*8 + old_x), ((7 - new_y)*8 + new_x))
                                 move2 = chess.Move(((7 - old_y)*8 + old_x), ((7 - new_y)*8 + new_x), chess.QUEEN)
-                                # quick hack to enable pawn promotion
+                                # enable pawn promotion
                                 if move2 in chess_board.legal_moves:
-                                    # push the move to the real chess board
                                     chess_board.push(move2)
-                                    # update our array representation
                                     board[int(old_y)][old_x] = None
                                     board[int(new_y)][new_x] = ('white', 'queen')
                                 elif move in chess_board.legal_moves:
@@ -259,7 +249,7 @@ def play_chess(chess_board, white="player", black="player"):
                                     # update our array representation
                                     board[int(old_y)][old_x] = None
                                     board[new_y][new_x] = piece
-                                # this refresh will reset the board if a piece was dragged somewhere invalid
+                                # reset the board if a piece was dragged somewhere invalid
                                 board = create_board_from_fen(chess_board.board_fen())
                         selected_piece = None
                         drop_pos = None
