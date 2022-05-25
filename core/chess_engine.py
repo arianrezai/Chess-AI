@@ -1,9 +1,3 @@
-"""
-Chess Engine : Contains the MoveGenerator class, which returns the best next move based on the selected choice: 
-random_move, greedy_best_move, mini_max_naive, mini_max_ab_pruning
-
-"""
-
 import chess
 import chess.polyglot 
 import random
@@ -20,18 +14,9 @@ class MoveGenerator:
         self.heuristics = Heuristics()
         self.transposition = {}
 
-    '''
-    Returns a random move from the list of all possible legal moves
-    '''
-
     def random_move(self, board):
         moves = list(board.legal_moves)
         return random.choice(moves)
-
-    '''
-    Evaluates all possible next legal moves and chooses the one that maximizes the score.
-    
-    '''
 
     def greedy_best_move(self, board):
         white = board.turn == chess.WHITE
@@ -57,12 +42,6 @@ class MoveGenerator:
             return self.random_move(board)
 
         return best_move
-
-
-    '''
-    MiniMax Algorithm with alpha-beta pruning
-    
-    '''
 
     def mini_max_ab_pruning(self, board):
 
