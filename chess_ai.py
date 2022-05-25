@@ -1,8 +1,3 @@
-"""
-Chess Program : Contains the main function; by running this file the user plays against the Chess-AI
-
-"""
-
 import chess
 from core import chess_engine
 from utils.gui import play_chess
